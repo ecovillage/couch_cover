@@ -12,7 +12,10 @@ module CouchCover
     def self.view category, name
       View.new category, name
     end
-
+    def self.get_doc doc_id
+      uri = URI.encode "#{CouchCover.couchdb_url}/#{doc_id}"
+      RestClient.get uri
+    end
   end
 
   #@@couchdb_url = nil
