@@ -1,4 +1,5 @@
 require "couch_cover/version"
+require "uri_parameter"
 require 'view'
 
 require 'json'
