@@ -16,6 +16,7 @@ module CouchCover
       RestClient.get view_url startkey, endkey, limit
     end
 
+    # Assembles the URL to query (with escaping)
     def view_url startkey=nil, endkey=nil, limit=20
       params = URIParameter.construct_nonil(limit: limit,
         startkey: startkey, endkey: endkey)
