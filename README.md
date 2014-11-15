@@ -1,6 +1,6 @@
 # CouchCover
 
-TODO: Write a gem description
+Tiny pieces of code to deal with a couchdb, handy for Sieben Linden specific use cases with a legacy db.
 
 ## Installation
 
