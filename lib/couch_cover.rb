@@ -29,16 +29,21 @@ module CouchCover
   # opts can be
   #  - :from ([2014,31,12]) the start key (date)
   #  - :limit the max number of entries to fetch
-  def self.get_seminars opts=nil
-    opts = {limit:20}.merge opts
-    if opts && opts[:from]
-      CouchDB.view('api', 'seminar_by_date').query(opts[:from], nil, opts[:limit])
-    else
-      CouchDB.view('api', 'seminar_by_date').query(nil, nil, opts[:limit])
-    end
-  end
+  #def self.get_seminars opts=nil
+  #  opts = {limit:20}.merge opts
+  #  if opts && opts[:from]
+  #    CouchDB.view('api', 'seminar_by_date').query(opts[:from], nil, opts[:limit])
+  #  else
+  #    CouchDB.view('api', 'seminar_by_date').query(nil, nil, opts[:limit])
+  #  end
+  #end
 
-  def self.get_bookings_for_seminar seminar_uuid
-    CouchDB.view('sl_seminar', 'booking_by_seminar').query(seminar_uuid, seminar_uuid, nil)
+  #def self.get_bookings_for_seminar seminar_uuid
+  #  CouchDB.view('sl_seminar', 'booking_by_seminar').query(seminar_uuid, seminar_uuid, nil)
+  #end
+
+  def self.changes_since sequence
+    uri = URI.encode "#{CouchCover.couchdb_url}/_changes?since=#{sequence}&include_docs=true"
+    RestClient.get uri
   end
 end
